@@ -4,6 +4,9 @@ function buildTweet7Day(ctx1,date,financeDates,volume,adjustedClosed){
     var date_tweet =new Date(date+ "T00:00:01")
 
     // var date_0 = financeDates[0]
+    var date_0 = financeDates[0].setSeconds(0)
+    console.log(date_0)
+
     console.log(date_tweet)
 
     const dataset = {
@@ -54,6 +57,7 @@ function buildTweet7Day(ctx1,date,financeDates,volume,adjustedClosed){
                 x: {
                     display: true,
                     type: 'time',
+                    min: date_0,
                     title:{
                         display: true,
                         text: 'Date'
@@ -177,13 +181,15 @@ function update7Percentages(dateLogged,financeType, financeDates){
             let head0 = thead.append("tr");
             head_row = head0.append("th").text("No record to display")
 
-
+            clearTableMessage = document.getElementById('tableMessage').innerHTML=""
 
         } else if (percentPrice0_oc !== null) {
 
             console.log(percentPrice0_oc)
             console.log(percentVol0_oc)
 
+            tableMessage = document.getElementById('tableMessage').innerHTML="<span style='font-size:10px'>Percentages are calculated based on start date prices and trading volume.</span>"
+            
             var thead = d3.select("thead");
             thead.html("");
             var tbody = d3.select("tbody");
